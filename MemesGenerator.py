@@ -18,10 +18,13 @@ def generate_image(project_id: str, location: str, output_file: str, prompt: str
 
     output_path = os.path.join("images", output_file)
     images[0].save(location=output_path)
-
-    return images
-def generate_meme(image_path, text, font_path, text_color, font_size, shadow_offset, shadow_color):
-    image = Image.open(image_path)
+    #my code ________________________________
+    image = Image.open(output_path)
+    return image
+   # return images --- original code
+   
+def generate_meme(image, text, font_path, text_color, font_size, shadow_offset, shadow_color):
+    #image = Image.open(image_path)
 
     blank_image = Image.new("RGBA", image.size)
     draw = ImageDraw.Draw(blank_image)
@@ -64,6 +67,10 @@ def generate_meme(image_path, text, font_path, text_color, font_size, shadow_off
 
     return final_image
 
+def image_test():
+    image = Image.open("memes/8.JPG")
+    return image
+
 
 image_path = "memes/1.JPG"
 text = "If you want to master Python\n Subscribe for more tutorials"
@@ -76,6 +83,7 @@ shadow_color = "black"
 
 
 #generate_image(project_id='"project-id"',location='"REGION"',output_file='Memes\image.jpeg',prompt='Create an image of a cricket ground in the heart of Los Angeles',)
+image=image_test()
 meme = generate_meme(image_path, text, font_path, text_color,font_size, shadow_offset, shadow_color)
 meme.show()
 meme.save("GeneratedMemes/subscribe_meme.png")
